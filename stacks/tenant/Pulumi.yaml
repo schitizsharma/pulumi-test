@@ -1,0 +1,3 @@
+name: olake-tenant-app
+runtime: go
+description: Phase 2 - Customer Compute (EC2) using Region stack reference

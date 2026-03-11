@@ -1,0 +1,3 @@
+name: olake-region-platform
+runtime: go
+description: Phase 1 - Foundational Network (VPC, Subnets, SG)
