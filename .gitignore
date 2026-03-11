@@ -1,0 +1,38 @@
+# OS-specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Go
+bin/
+vendor/
+go.work.sum
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Environment variables & Local Secrets
+.env
+.env.*
+!.env.example
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*~
+*.md
+
+# Pulumi
+# (Note: Pulumi.*.yaml files are typically tracked in git, but you can ignore local override files if you use them)
+Pulumi.*.local.yaml
+
+# Claude / Local Agent configurations
+.claude/
+.mcp.json
