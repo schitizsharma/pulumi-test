@@ -11,7 +11,7 @@ func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
 		// IMPORTANT: Replace "my-org" with your actual Pulumi Organization name
 		// If you are using an individual account, it's your Pulumi username.
-		orgName := "schitiz-datazip-io"
+		orgName := "schitiz-datazip-io-org"
 		regionStackName := fmt.Sprintf("%s/olake-region-platform/dev", orgName)
 
 		// 1. Reference the Region Stack
