@@ -1,0 +1,15 @@
+settings:
+  sourceContext:
+    git:
+      branch: refs/heads/main
+      repoDir: stacks/tenant
+  gitHub:
+    repository: schitizsharma/pulumi-test
+    deployCommits: true
+    previewPullRequests: true
+  operationContext:
+    options:
+      skipInstallDependencies: false
+      skipIntermediateDeployments: true
+      deleteAfterDestroy: false
+      remediateIfDriftDetected: false
