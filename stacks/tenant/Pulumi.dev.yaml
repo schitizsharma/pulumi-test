@@ -1,0 +1,5 @@
+environment:
+  - dev/aws-shared-oidc
+
+config:
+  aws:region: us-east-1
