@@ -27,8 +27,6 @@ go.work.sum
 .idea/
 *.swp
 *~
-*.md
-
 # Pulumi
 # (Note: Pulumi.*.yaml files are typically tracked in git, but you can ignore local override files if you use them)
 Pulumi.*.local.yaml
@@ -36,3 +34,4 @@ Pulumi.*.local.yaml
 # Claude / Local Agent configurations
 .claude/
 .mcp.json
+README.md
