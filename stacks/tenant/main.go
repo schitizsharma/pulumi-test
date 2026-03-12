@@ -5,6 +5,7 @@ import (
 
 	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/ec2"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
 
 func main() {
@@ -43,14 +44,25 @@ func main() {
 			return fmt.Errorf("failed to lookup AMI: %w", err)
 		}
 
-		// 4. Create an EC2 Instance in the shared subnet using the shared SG
-		instance, err := ec2.NewInstance(ctx, "tenant-a-ec2", &ec2.InstanceArgs{
+		// 4. Dynamically name the instance based on Pulumi Config or default to stack name
+		tenantName := ctx.Stack()
+
+		// Attempt to get instanceName from config, fallback to stack name if not set
+		conf := config.New(ctx, "")
+		instanceName := conf.Get("instanceName")
+		if instanceName == "" {
+			instanceName = fmt.Sprintf("%s-ec2", tenantName)
+		}
+
+		// 5. Create an EC2 Instance in the shared subnet using the shared SG
+		instance, err := ec2.NewInstance(ctx, instanceName, &ec2.InstanceArgs{
 			InstanceType:        pulumi.String("t3.micro"),
 			VpcSecurityGroupIds: pulumi.StringArray{sgId},
 			SubnetId:            subnetId,
 			Ami:                 pulumi.String(ami.Id),
 			Tags: pulumi.StringMap{
-				"Name": pulumi.String("tenant-a-ec2"),
+				"Name":   pulumi.String(instanceName),
+				"Tenant": pulumi.String(tenantName),
 			},
 		})
 		if err != nil {

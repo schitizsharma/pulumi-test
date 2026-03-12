@@ -1,0 +1,6 @@
+environment:
+  - dev/aws-shared-oidc
+
+config:
+  aws:region: us-east-1
+  instanceName: my-custom-tenant-a-ec2
