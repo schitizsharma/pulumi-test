@@ -11,7 +11,7 @@ func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
 		// IMPORTANT: Replace "my-org" with your actual Pulumi Organization name
 		// If you are using an individual account, it's your Pulumi username.
-		orgName := "my-org"
+		orgName := "schitiz-datazip-io"
 		regionStackName := fmt.Sprintf("%s/olake-region-platform/dev", orgName)
 
 		// 1. Reference the Region Stack
@@ -21,8 +21,8 @@ func main() {
 		}
 
 		// 2. Get Outputs from the Region Stack
-		subnetId := regionStack.GetOutput(pulumi.String("subnetId"))
-		sgId := regionStack.GetOutput(pulumi.String("securityGroupId"))
+		subnetId := regionStack.GetStringOutput(pulumi.String("subnetId"))
+		sgId := regionStack.GetStringOutput(pulumi.String("securityGroupId"))
 
 		// 3. Find the latest Amazon Linux 2023 AMI
 		ami, err := ec2.LookupAmi(ctx, &ec2.LookupAmiArgs{
@@ -46,8 +46,8 @@ func main() {
 		// 4. Create an EC2 Instance in the shared subnet using the shared SG
 		instance, err := ec2.NewInstance(ctx, "tenant-a-ec2", &ec2.InstanceArgs{
 			InstanceType:        pulumi.String("t3.micro"),
-			VpcSecurityGroupIds: pulumi.StringArray{pulumi.StringInput(sgId)},
-			SubnetId:            pulumi.StringInput(subnetId),
+			VpcSecurityGroupIds: pulumi.StringArray{sgId},
+			SubnetId:            subnetId,
 			Ami:                 pulumi.String(ami.Id),
 			Tags: pulumi.StringMap{
 				"Name": pulumi.String("tenant-a-ec2"),
