@@ -3,6 +3,7 @@ module olake-tenant-app
 go 1.25.6
 
 require (
+	github.com/lib/pq v1.11.2
 	github.com/pulumi/pulumi-aws/sdk/v7 v7.21.0
 	github.com/pulumi/pulumi/sdk/v3 v3.225.1
 )
