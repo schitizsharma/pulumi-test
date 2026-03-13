@@ -1,11 +1,12 @@
 settings:
+  agentPoolId: dz-olake-pulumi-worker-test
   sourceContext:
     git:
       branch: refs/heads/main
       repoDir: stacks/region
   gitHub:
     repository: schitizsharma/pulumi-test
-    deployCommits: true
+    deployCommits: false
     previewPullRequests: true
   operationContext:
     options:
